@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OnDemandBasicComponent } from './on-demand-basic.component';
 
@@ -6,7 +6,7 @@ describe('OnDemandBasicComponent', () => {
   let component: OnDemandBasicComponent;
   let fixture: ComponentFixture<OnDemandBasicComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OnDemandBasicComponent ]
     })
