@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sponge"
+    }
+  },
+  "defaultProject": "sponge",
+  "cli": {
+    "analytics": "f6deeef0-2ddc-4b08-a786-9436cc582626"
+  }
 }
