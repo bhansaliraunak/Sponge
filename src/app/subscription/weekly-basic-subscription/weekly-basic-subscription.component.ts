@@ -12,9 +12,9 @@ var surveyJSON = {
       name: 'weekly-basic',
       elements: [
         {
-          type: 'multipletext',
           name: 'personal',
           title: 'Personal Details',
+          type: 'text',
           items: [
             {
               name: 'name',
@@ -31,24 +31,14 @@ var surveyJSON = {
             {
               name: 'locality',
               isRequired: true,
-              title: 'Locality',
-            },
-            {
-              name: 'city',
-              isRequired: true,
-              title: 'City',
-            },
-            {
-              name: 'state',
-              isRequired: true,
-              title: 'State',
+              title: 'Address',
             },
           ],
         },
         {
           type: 'checkbox',
           name: 'plan',
-          title: 'Plan that you showed an interest in',
+          title: 'Plans',
           defaultValue: ['weekly-basic'],
           readOnly: true,
           choices: [
@@ -325,7 +315,7 @@ var surveyJSON = {
         {
           type: 'comment',
           name: 'feedback',
-          title: 'Comments/Suggestions/Feedback',
+          title: 'Feedback',
         },
       ],
     },
@@ -352,12 +342,27 @@ export class WeeklyBasicSubscriptionComponent implements OnInit {
   constructor(public appService: AppService) {}
   ngOnInit() {
     this.survey = new Survey.Model(surveyJSON);
-    this.survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
     this.survey.onComplete.add((survey) => {
       this.appService.create(survey.data).subscribe((res) => {
         console.log('User request submitted...');
       });
     });
+
+    this.survey.completedHtml = '<div>Hello</div>';
+    this.survey.showCompletedPage = false;
+
+    var englishStrings = {
+      pagePrevText: 'Previous',
+      pageNextText: 'Next',
+      completeText: 'Complete',
+      previewText: 'Preview',
+      editText: 'Edit',
+      completingSurvey: 'Sponge will reach you out',
+      booleanCheckedLabel: 'No',
+    };
+    Survey.surveyLocalization.locales['en'] = englishStrings;
+    Survey.surveyLocalization.localeNames['en'] = 'English';
+
     Survey.SurveyNG.render('surveyElement', {
       model: this.survey,
     });

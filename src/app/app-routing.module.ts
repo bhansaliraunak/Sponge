@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminTrackerComponent } from './admin-tracker/admin-tracker.component';
 import { HomeComponent } from './home/home.component';
 import { OnDemandBasicComponent } from './on-demand/on-demand-basic/on-demand-basic.component';
 import { OnDemandCustomComponent } from './on-demand/on-demand-custom/on-demand-custom.component';
@@ -11,6 +12,7 @@ import { WeeklyBasicSubscriptionComponent } from './subscription/weekly-basic-su
 import { WeeklyCustomSubscriptionComponent } from './subscription/weekly-custom-subscription/weekly-custom-subscription.component';
 import { WeeklyPremiumSubscriptionComponent } from './subscription/weekly-premium-subscription/weekly-premium-subscription.component';
 import { SurveyComponent } from './survey/survey.component';
+import { UserTrackerComponent } from './user-tracker/user-tracker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'monthly-basic', component: MonthlyBasicSubscriptionComponent },
   { path: 'monthly-premium', component: MonthlyPremiumSubscriptionComponent },
   { path: 'monthly-custom', component: MonthlyCustomSubscriptionComponent },
+  { path: 'admin/track', component: AdminTrackerComponent },
+  { path: 'user/track', component: UserTrackerComponent },
 ];
 
 @NgModule({

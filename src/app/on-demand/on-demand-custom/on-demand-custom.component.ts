@@ -12,38 +12,23 @@ var surveyJSON = {
       name: 'on-demand-custom',
       elements: [
         {
-          type: 'multipletext',
-          name: 'personal',
-          title: 'Personal Details',
-          items: [
-            {
-              name: 'name',
-              isRequired: true,
-              title: 'Name',
-            },
-            {
-              name: 'mobile_number',
-              isRequired: true,
-              placeHolder: '+91-xxx-xxx-xxxx',
-              title: 'Mobile Number',
-              maxLength: 10,
-            },
-            {
-              name: 'locality',
-              isRequired: true,
-              title: 'Locality',
-            },
-            {
-              name: 'city',
-              isRequired: true,
-              title: 'City',
-            },
-            {
-              name: 'state',
-              isRequired: true,
-              title: 'State',
-            },
-          ],
+          name: 'name',
+          type: 'text',
+          title: 'Full Name',
+          isRequired: true,
+        },
+        {
+          name: 'address',
+          type: 'text',
+          title: 'Address',
+          isRequired: true,
+        },
+        {
+          name: 'mobile',
+          type: 'text',
+          title: 'Mobile',
+          maxLength: 10,
+          isRequired: true,
         },
         {
           type: 'checkbox',
@@ -105,6 +90,10 @@ var surveyJSON = {
               text: 'Crossover',
             },
             {
+              value: 'compact_sedan',
+              text: 'Compact Sedan',
+            },
+            {
               value: 'sedan',
               text: 'Sedan',
             },
@@ -134,8 +123,12 @@ var surveyJSON = {
               title: 'Dry Cleaning',
               choices: [
                 {
+                  value: '0',
+                  text: '0 time ',
+                },
+                {
                   value: '1',
-                  text: '1 day ',
+                  text: '1 time ',
                 },
               ],
             },
@@ -146,11 +139,11 @@ var surveyJSON = {
               choices: [
                 {
                   value: '0',
-                  text: '0 day ',
+                  text: '0 time ',
                 },
                 {
                   value: '1',
-                  text: '1 day ',
+                  text: '1 time ',
                 },
               ],
             },
@@ -188,11 +181,11 @@ var surveyJSON = {
               choices: [
                 {
                   value: '0',
-                  text: '0 day ',
+                  text: '0 time ',
                 },
                 {
                   value: '1',
-                  text: '1 day ',
+                  text: '1 time ',
                 },
               ],
             },
@@ -203,11 +196,11 @@ var surveyJSON = {
               choices: [
                 {
                   value: '0',
-                  text: '0 day ',
+                  text: '0 time ',
                 },
                 {
                   value: '1',
-                  text: '1 day ',
+                  text: '1 time ',
                 },
               ],
             },
@@ -263,7 +256,6 @@ export class OnDemandCustomComponent implements OnInit {
   constructor(public appService: AppService) {}
   ngOnInit() {
     this.survey = new Survey.Model(surveyJSON);
-    this.survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
     this.survey.onComplete.add((survey) => {
       this.appService.create(survey.data).subscribe((res) => {
         console.log('User request submitted...');

@@ -3,17 +3,18 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
+  HttpParams,
 } from '@angular/common/http';
 
-import { throwError, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { User } from './app.model';
+import { throwError, Observable, Subject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from './user-tracker/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  private apiServer = 'http://localhost:3000/api/v1';
+  private apiServer = 'http://localhost:8080/api/v1';
   //private apiServer = 'http://13.233.196.103:3000/api/v1';
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,12 +26,33 @@ export class AppService {
   create(user): Observable<User> {
     return this.httpClient
       .post<User>(
-        this.apiServer + '/user/create',
+        this.apiServer + '/producer',
         JSON.stringify(user),
         this.httpOptions
       )
       .pipe(catchError(this.errorHandler));
   }
+
+  fetchUserData(mobile): Observable<User[]> {
+    return this.httpClient
+      .get<User[]>(this.apiServer + '/fetch/user', {
+        params: {
+          mobile: mobile,
+        },
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+
+  updateUserStatus(userId) {
+    const params = new HttpParams().set('id', userId.toString());
+
+    return this.httpClient
+      .put(this.apiServer + '/update/user/status', null, {
+        params: params,
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

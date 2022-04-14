@@ -19,6 +19,8 @@ import { MonthlyCustomSubscriptionComponent } from './subscription/monthly-custo
 import { OnDemandBasicComponent } from './on-demand/on-demand-basic/on-demand-basic.component';
 import { OnDemandPremiumComponent } from './on-demand/on-demand-premium/on-demand-premium.component';
 import { OnDemandCustomComponent } from './on-demand/on-demand-custom/on-demand-custom.component';
+import { AdminTrackerComponent } from './admin-tracker/admin-tracker.component';
+import { UserTrackerComponent } from './user-tracker/user-tracker.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,8 @@ import { OnDemandCustomComponent } from './on-demand/on-demand-custom/on-demand-
     OnDemandBasicComponent,
     OnDemandPremiumComponent,
     OnDemandCustomComponent,
+    AdminTrackerComponent,
+    UserTrackerComponent,
   ],
   imports: [
     BrowserModule,

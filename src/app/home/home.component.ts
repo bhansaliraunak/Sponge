@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EasingLogic } from 'ngx-page-scroll-core';
@@ -38,7 +38,11 @@ export class HomeComponent implements OnInit {
     return (c / 2) * (-Math.pow(2, -10 * --t) + 2) + b;
   };
 
-  constructor(public fb: FormBuilder, public appService: AppService) {}
+  constructor(
+    private fb: FormBuilder,
+    private appService: AppService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -47,6 +51,13 @@ export class HomeComponent implements OnInit {
         description: [''],
         email: [''],
       }),
+    });
+  }
+
+  @ViewChild('mobile') mobile: ElementRef;
+  gotoUserTracker() {
+    this.router.navigate(['/user/track'], {
+      queryParams: { mobile: this.mobile.nativeElement.value },
     });
   }
 

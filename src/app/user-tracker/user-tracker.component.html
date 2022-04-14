@@ -1,0 +1,177 @@
+<!-- Top Bar Start -->
+<div class="top-bar" id="topBar">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 col-md-12">
+        <div class="logo">
+          <a href="index.html">
+            <h1>SPO<span>NGE</span></h1>
+            <!-- <img src="img/logo.jpg" alt="Logo"> -->
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-7 d-none d-lg-block">
+        <div class="row">
+          <div class="col-4">
+            <div class="top-bar-item">
+              <div class="top-bar-icon">
+                <i class="far fa-clock"></i>
+              </div>
+              <div class="top-bar-text">
+                <h3>Opening Hour</h3>
+                <p>18 X 6</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="top-bar-item">
+              <div class="top-bar-icon">
+                <i class="fa fa-phone-alt"></i>
+              </div>
+              <div class="top-bar-text">
+                <h3>Call Us</h3>
+                <p>+91 7447477330</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="top-bar-item">
+              <div class="top-bar-icon">
+                <i class="far fa-envelope"></i>
+              </div>
+              <div class="top-bar-text">
+                <h3>Email Us</h3>
+                <p>info@sponge.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Top Bar End -->
+
+<!-- Blog Start -->
+<div class="blog">
+  <div class="container">
+    <div class="section-header text-center">
+      <p>USER</p>
+      <h2>Sponge Service Tracker</h2>
+    </div>
+    <div class="sidebar-widget">
+      <div class="tab-post">
+        <ul class="nav nav-pills nav-justified">
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#latest">Latest</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#pending">Pending</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#declined"
+              >Cancelled</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="pending" class="container tab-pane fade">
+          <div *ngFor="let user of users$ | async">
+            <div
+              class="row"
+              style="border: 1px solid grey; padding: 50px; margin: 24px"
+              *ngIf="user.userStatus === 'Pending'"
+            >
+              <div class="col-lg-4">
+                <div class="blog-item">
+                  <div class="blog-text">
+                    <h3>
+                      <a href="#">{{ user.carName }} - {{ user.plan }}</a>
+                    </h3>
+                    <br />
+                    <span>{{ user.name }}</span>
+                    <hr />
+                    <span>
+                      {{ user.address }}
+                    </span>
+                    <hr />
+                    <span>{{ user.mobile }}</span>
+                    <hr />
+                    <span>{{ user.carType }}</span>
+                    <hr />
+                  </div>
+                  <div class="ml-auto">
+                    <button class="btn btn-primary no-click" [disabled]="true">
+                      {{ user.userStatus }}
+                    </button>
+                  </div>
+                  <br />
+                  <div class="ml-auto">
+                    <button
+                      class="btn btn-custom"
+                      (click)="cancelRequest(user.id)"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="declined" class="container tab-pane fade">
+          <div *ngFor="let user of users$ | async">
+            <div
+              class="row"
+              style="border: 1px solid grey; padding: 50px; margin: 24px"
+              *ngIf="user.userStatus === 'Cancelled'"
+            >
+              <div class="col-lg-4">
+                <div class="blog-item">
+                  <div class="blog-text">
+                    <h3>
+                      <a href="#">{{ user.carName }} - {{ user.plan }}</a>
+                    </h3>
+                    <br />
+                    <span>{{ user.name }}</span>
+                    <hr />
+                    <span>
+                      {{ user.address }}
+                    </span>
+                    <hr />
+                    <span>{{ user.mobile }}</span>
+                    <hr />
+                    <span>{{ user.carType }}</span>
+                    <hr />
+                  </div>
+                  <br />
+                  <div class="ml-auto">
+                    <button class="btn btn-primary no-click" [disabled]="true">
+                      {{ user.userStatus }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row" style="padding: 50px; margin: 2px">
+        <div class="col-12">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <!-- Blog End -->
+</div>
